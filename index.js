@@ -104,7 +104,7 @@ function collectData(results, runData) {
   runData["tests"].push(testData);
 }
 async function run() {
-  const wpt = new WebPageTest("http://192.168.64.1/", WPT_API_KEY);
+  const wpt = new WebPageTest("http://192.168.64.1", WPT_API_KEY);
 
   //TODO: make this configurable
   let options = {
@@ -112,7 +112,7 @@ async function run() {
     pollResults: 5,
     timeout: 240,
     emulateMobile: true,
-    "server": "http://172.17.0.1", 
+    "server": "http://192.168.64.1", 
     "runs": 1,
     "location": "Test:Chrome",
     "connectivity": "Native",
