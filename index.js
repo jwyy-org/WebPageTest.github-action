@@ -104,7 +104,7 @@ function collectData(results, runData) {
   runData["tests"].push(testData);
 }
 async function run() {
-  const wpt = new WebPageTest("http://192.168.64.1", "123456789");
+  const wpt = new WebPageTest("http://192.168.64.1", WPT_API_KEY);
 
   //TODO: make this configurable
   let options = {
