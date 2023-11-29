@@ -104,30 +104,21 @@ function collectData(results, runData) {
   runData["tests"].push(testData);
 }
 async function run() {
-  const wpt = new WebPageTest("www.webpagetest.org", WPT_API_KEY);
+  const wpt = new WebPageTest("http://172.17.0.1/", WPT_API_KEY);
 
   //TODO: make this configurable
   let options = {
     firstViewOnly: true,
-    runs: 3,
-    location: "Dulles:Chrome",
-    connectivity: "4G",
     pollResults: 5,
     timeout: 240,
     emulateMobile: true,
+    "server": "http://172.17.0.1", 
+    "runs": 1,
+    "location": "Test:Chrome",
+    "connectivity": "Native",
+    "blockAds": true,
+    "timeout": 180
   };
-  if (WPT_OPTIONS) {
-    let settings = require(`${DIRECTORY}/${WPT_OPTIONS}`);
-    if (typeof settings === "object" && settings !== null) {
-      core.debug(settings);
-      options = {
-        ...options,
-        ...settings,
-      };
-    } else {
-      core.setFailed("The specified WebPageTest settings aren't a valid JavaScript object");
-    }
-  }
   if (WPT_BUDGET) {
     options.specs = require(`${DIRECTORY}/${WPT_BUDGET}`);
   }
